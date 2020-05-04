@@ -1,0 +1,36 @@
+describe('InvoiceTestSuit', function ()
+ {
+    it('TC_03_PT', function ()                                             //Creating and saving a new Invoice
+     {                                                                     //with a new client
+        cy.visit('https://invoicely.com')                                  
+        cy.get('.header_login > .main_header_link > .highlight_button')
+        .click()
+        cy.url()
+        .should('include', '/login')
+        cy.get('#email_address')
+        .type('sikosek.boris@gmail.com')                                  //Login inforamtion username
+        cy.get('#password')                  
+        .type('Invoice2020')                                              //Login inforamtion password
+        cy.get('button')
+        .click()
+        cy.get('li > a')
+        .click()
+        cy.get('.right > .permission_create')
+        .click()
+        cy.get('.i_new_invoice')
+        .click()
+        cy.get('.address_to > .form_heading > .right')
+        .click()
+        cy.get('.individual > .first')
+        .type('Test')
+        cy.get(':nth-child(12) > .form_row > .save_button')               //Adding a new Client
+        .click()                                    
+        cy.get('.is_dropdown')
+        .click()
+        cy.get(':nth-child(1) > .permission_create')                      //Saving the Invoice
+        .click()
+        cy.get('.statement_info')
+        .should('be.visible')                                             //Confirming saving
+    })                                                                  
+   
+  })
