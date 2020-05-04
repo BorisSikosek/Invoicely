@@ -39,8 +39,8 @@ describe('InvoiceTestSuit', function ()
        .click()
        cy.get(':nth-child(1) > .permission_create')                       
        .click()
-       cy.get('.statement_info')
-       .should('be.visible')
+       cy.get('.statement_info')                                          //Confirming Invoice has been created
+       .should('be.visible')        
     })                                                                  
    
   })
