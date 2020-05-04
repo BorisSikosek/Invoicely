@@ -24,13 +24,23 @@ describe('InvoiceTestSuit', function ()
         cy.get('.individual > .first')
         .type('Test')
         cy.get(':nth-child(12) > .form_row > .save_button')               //Adding a new Client
-        .click()                                    
-        cy.get('.is_dropdown')
-        .click()
-        cy.get(':nth-child(1) > .permission_create')                      //Saving the Invoice
-        .click()
-        cy.get('.statement_info')
-        .should('be.visible')                                             //Confirming saving
+        .click()  
+        cy.get('.item_textarea')                                          //Naming an Item
+        .type('Test Item')                                  
+        cy.get('.quantity_input > input')                                 //Adding Quantity to the Item
+        .type('10')
+        cy.get('[name="statement[item_rate]"]')                           
+        .clear()
+        cy.get('[name="statement[item_rate]"]')                           //Adding Rate to the Item
+        .type('10')
+        cy.get('.total_input > .with_addon')                              //Checking the calculated Amount
+        .should('have.value','100.00')
+       cy.get('.is_dropdown')
+       .click()
+       cy.get(':nth-child(1) > .permission_create')                       
+       .click()
+       cy.get('.statement_info')
+       .should('be.visible')
     })                                                                  
    
   })
