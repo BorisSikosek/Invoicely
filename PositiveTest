@@ -98,7 +98,7 @@ describe('InvoiceTestSuit', function ()
         .clear()
         .type('2.5')
         
-        //---Whriting Inboice Note
+        //---Whriting Invoice Note
         cy.get('.mt40 > textarea')
         .type('Always a pleasure doing business with you')
 
