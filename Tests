@@ -207,6 +207,10 @@ describe('InvoiceTestSuit', function ()
       
     })
     it('NegativeTest_03', function(){
+    
+       //----Trying to save an invoice with the same Invoice No. 
+       //----as an Invoice previusly created
+      
       cy.visit('https://invoicely.com')                                  
       cy.get('.header_login > .main_header_link > .highlight_button')
        .click()
@@ -227,8 +231,7 @@ describe('InvoiceTestSuit', function ()
       cy.get('.i_new_invoice')
        .click()
 
-       //----Trying to save an invoice with the same Invoice No. 
-       //----as an Invoice previusly created
+       
        cy.get('.max_100')
        .clear()
        .type('INV-1')
