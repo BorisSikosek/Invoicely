@@ -1,46 +1,115 @@
 describe('InvoiceTestSuit', function ()
  {
-    it('TC_03_PT', function ()                                             //Creating and saving a new Invoice
-     {                                                                     //with a new client
+    it('TC_03_PT', function ()                                             
+     {                                                                     
+
+         //Creating and saving a new Invoice
+                              
+
         cy.visit('https://invoicely.com')                                  
         cy.get('.header_login > .main_header_link > .highlight_button')
-        .click()
-        cy.url()
-        .should('include', '/login')
+         .click()
+
+        //----Loging In
+         cy.url()
+         .should('include', '/login')
         cy.get('#email_address')
-        .type('sikosek.boris@gmail.com')                                  //Login inforamtion username
+         .type('sikosek.boris@gmail.com')                                  
         cy.get('#password')                  
-        .type('Invoice2020')                                              //Login inforamtion password
+         .type('Invoice2020')                                              
         cy.get('button')
-        .click()
+         .click()
         cy.get('li > a')
-        .click()
+         .click()
         cy.get('.right > .permission_create')
-        .click()
-        cy.get('.i_new_invoice')                                          //Generating a new Invoice
-        .click()
+         .click()
+        cy.get('.i_new_invoice')
+         .click()
+
+         //----Adding A Description
+         cy.get('.statement_description > textarea')
+         .type('Testing of the Add New -> Invoice function')
+
+         //----Adding A New Client
         cy.get('.address_to > .form_heading > .right')
-        .click()
+         .click()
         cy.get('.individual > .first')
-        .type('Test')
-        cy.get(':nth-child(12) > .form_row > .save_button')               //Adding a new Client
-        .click()  
-        cy.get('.item_textarea')                                          //Naming an Item
-        .type('Test Item')                                  
-        cy.get('.quantity_input > input')                                 //Adding Quantity to the Item
-        .type('10')
+         .type('Test')
+        cy.get('.individual > .second')
+         .type('Test')
+        cy.get('#create_edit_connection_popup > .board > .page > :nth-child(7) > .form_row > input')
+         .type('test@test.com')
+        cy.get(':nth-child(8) > .form_row > input')
+         .type('12345678')
+        cy.get('[placeholder="Street Line 1"]')
+         .type('Street 23')
+        cy.get('.one')
+         .type('Belgrade')
+        cy.get('.three')
+         .type('11000')
+        cy.get('select.mt10')
+         .select('Serbia')
+        cy.get(':nth-child(12) > .form_row > .save_button')               
+         .click()  
+         
+         //----Creating An Item
+        cy.get('.item_textarea')               
+         .type('Test Item')
+        cy.get('.quantity_input > input')                                 
+         .type('10')
         cy.get('[name="statement[item_rate]"]')                           
+         .clear()
+         .type('10')                                                      
+       
+         //----Adding An Expense
+        cy.get(':nth-child(8) > .new_item')
+         .click()
+         .get(':nth-child(8) > .dropdown-menu > :nth-child(2) > a')
+         .click()
+        cy.get('#item_textarea_2 > .item_textarea')
+         .type('Test Expense')
+        cy.get('[data-id="2"] > .item_row > .amount > .inner > .total_input > .with_addon')
+         .clear()
+         .type('75')
+
+         //----Adding A Trip Expense
+        cy.get(':nth-child(8) > .new_item')
+         .click()
+         .get(':nth-child(8) > .dropdown-menu > :nth-child(3) > a')
+         .click()
+        cy.get('#item_textarea_3 > .item_textarea')
+         .type('Test Trip')
+        cy.get('[data-id="3"] > .item_row > .quantity > .inner > .quantity_input > input')
+         .type('80')
+        cy.get('[data-id="3"] > .item_row > .unit > .inner > .unit_input > .with_addon')
         .clear()
-        cy.get('[name="statement[item_rate]"]')                           //Adding Rate to the Item
-        .type('10')
-        cy.get('.total_input > .with_addon')                              //Checking the calculated Amount
-        .should('have.value','100.00')
-       cy.get('.is_dropdown')
-       .click()
-       cy.get(':nth-child(1) > .permission_create')                       
-       .click()
-       cy.get('.statement_info')                                          //Confirming Invoice has been created
-       .should('be.visible')        
+        .type('5')
+        
+         //----Adding A Task
+        cy.get(':nth-child(8) > .new_item')
+         .click()
+         .get(':nth-child(8) > .dropdown-menu > :nth-child(4) > a')
+         .click()
+        cy.get('#item_textarea_4 > .item_textarea')
+        .type('Testing!')
+        cy.get('[data-id="4"] > .item_row > .quantity > .inner > .quantity_input > input')
+        .type('8')
+        cy.get('[data-id="4"] > .item_row > .unit > .inner > .unit_input > .with_addon')
+        .clear()
+        .type('2.5')
+        
+        //---Whriting Inboice Note
+        cy.get('.mt40 > textarea')
+        .type('Always a pleasure doing business with you')
+
+        //----Saving The Invoice
+
+        cy.get('.is_dropdown')                       
+         .click()
+         cy.get(':nth-child(1) > .permission_create')
+         .click()
+        cy.get('.statement_info')
+         .should('be.visible')
     })                                                                  
    
   })
