@@ -1,6 +1,6 @@
 describe('InvoiceTestSuit', function ()
  {
-/*    it('PositiveTest_01', function ()                                             
+    it('PositiveTest_01', function ()                                             
      {                                                                     
 
          //Creating and saving a new Invoice
@@ -112,7 +112,7 @@ describe('InvoiceTestSuit', function ()
         cy.get('.statement_info')
          .should('be.visible')
     }) 
-*/
+
     it('NegativeTest_01', function(){
 
       //Trying to save an Invoice without a client/vendor
